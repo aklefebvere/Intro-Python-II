@@ -1,5 +1,5 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -38,6 +38,8 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+user_name = input("Please enter your name... ")
+player = Player(user_name, room['outside'])
 
 # Write a loop that:
 #
@@ -49,3 +51,43 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+# def check_location(direction):
+#     pass
+
+game_on = True
+
+print(f"{player.current_room.name}, {player.current_room.desc} \n")
+
+while game_on:
+    user_input = input("Where would you like to go? n, e, s, w. q to quit game ")
+    print('\n')
+    if user_input == 'q':
+        game_on = False
+    if user_input == 'n':
+        try: 
+            player.current_room.n_to.name
+            player.current_room = player.current_room.n_to
+        except:
+            print(f"You cannot go {user_input} from here...\n")
+    elif user_input == 'e':
+        try: 
+            player.current_room.e_to.name
+            player.current_room = player.current_room.e_to
+        except:
+            print(f"You cannot go {user_input} from here...\n")
+    elif user_input == 's':
+        try: 
+            player.current_room.s_to.name
+            player.current_room = player.current_room.s_to
+        except:
+            print(f"You cannot go {user_input} from here...\n")
+    elif user_input == 'w':
+        try: 
+            player.current_room.w_to.name
+            player.current_room = player.current_room.w_to
+        except:
+            print(f"You cannot go {user_input} from here...\n")
+
+    if game_on == True:
+        print(f"{player.current_room.name}, {player.current_room.desc}\n")
